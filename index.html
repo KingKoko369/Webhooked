@@ -113,10 +113,8 @@
 
     <script>
         // --- CONFIGURATION ---
-        // Note: For a real app, you would register an application at discord.com/developers
-        // and host this on a domain. For this demo, we'll simulate the state or guide the user.
-        const CLIENT_ID = '1479022144267616421';
-        const REDIRECT_URI = window.location.href.split('#')[0];
+        const CLIENT_ID = '1479022144267616421'; 
+        const REDIRECT_URI = window.location.origin + window.location.pathname;
         
         let currentUser = null;
 
@@ -127,7 +125,7 @@
 
             if (accessToken) {
                 fetchDiscordUser(accessToken);
-                // Clean URL
+                // Clean URL fragment without refreshing
                 window.history.replaceState({}, document.title, window.location.pathname);
             } else {
                 const savedUser = localStorage.getItem('discord_user');
@@ -138,23 +136,7 @@
         };
 
         function loginWithDiscord() {
-            // Since this is a standalone file, we use the Implicit Grant flow
-            // Replace CLIENT_ID with your actual Discord App ID to make this functional
-            if (CLIENT_ID === 'YOUR_CLIENT_ID') {
-                showStatus("Developer: Please set a valid Discord CLIENT_ID in the script to enable login.", "error");
-                // For demonstration purposes, we will mock a login if the user clicks again or if you want to test the UI
-                console.warn("OAuth2 requires a registered Client ID from Discord Developer Portal.");
-                
-                // MOCK FOR PREVIEW PURPOSES
-                const mockUser = {
-                    id: '123456789012345678',
-                    username: 'DemoUser',
-                    avatar: null
-                };
-                setupUser(mockUser);
-                return;
-            }
-
+            // Implicit Grant flow
             const url = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
             window.location.href = url;
         }
