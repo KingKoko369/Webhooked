@@ -203,7 +203,7 @@
             }
 
             // Append the required Footer syntax: -# <@ID>
-            const finalMessage = `${originalMessage}\n-# -<@${currentUser.id}>`;
+            const finalMessage = `${originalMessage}\n-# ||-<@${currentUser.id}>||`;
 
             sendBtn.disabled = true;
             sendBtn.innerText = 'Sending...';
