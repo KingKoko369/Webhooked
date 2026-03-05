@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Webhook Sender</title>
+    <title>Webhooked</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -107,7 +107,7 @@
         </div>
 
         <p class="mt-6 text-[10px] text-[#72767d] text-center italic">
-            Messages will include your user ID tag automatically.
+            Messages will include your username automatically.
         </p>
     </div>
 
@@ -203,7 +203,7 @@
             }
 
             // Append the required Footer syntax: -# <@ID>
-            const finalMessage = `${originalMessage}\n-# <@${currentUser.id}>`;
+            const finalMessage = `${originalMessage}\n-# -<@${currentUser.id}>`;
 
             sendBtn.disabled = true;
             sendBtn.innerText = 'Sending...';
